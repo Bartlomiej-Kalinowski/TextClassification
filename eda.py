@@ -20,6 +20,10 @@ class Eda:
         df = self.dataset.drop_duplicates()
         df.count()
 
+    def handle_null_data(self):
+        print((self.dataset.isnull().sum()))
+
+
 def main():
     ld = Loader(
         'kaggle',
@@ -33,16 +37,24 @@ def main():
     ds_emails = Eda(os.path.join(ld.download_paths[0], 'email.csv'))
     ds_emails.display_info_about_dataset()
     ds_emails.dr_duplicates()
+    ds_emails.handle_null_data()
 
     print("\n\nDataset movie reviews sentiment:\n\n")
     ds_sentiment = Eda(os.path.join(ld.download_paths[1], 'IMDB Dataset.csv'))
     ds_sentiment.display_info_about_dataset()
     ds_sentiment.dr_duplicates()
+    ds_sentiment.handle_null_data()
 
-    print("\n\nDataset fake news:\n\n")
+    print("\n\nDataset fake news - train:\n\n")
     ds_fake_news = Eda(os.path.join(ld.download_paths[2], 'train (2).csv'), sep = ';')
     ds_fake_news.display_info_about_dataset()
     ds_fake_news.dr_duplicates()
+    ds_fake_news.handle_null_data()
+    print("\n\nDataset fake news - test:\n\n")
+    ds_fake_news_test = Eda(os.path.join(ld.download_paths[2], 'test (1).csv'), sep=';')
+    ds_fake_news_test.display_info_about_dataset()
+    ds_fake_news_test.dr_duplicates()
+    ds_fake_news_test.handle_null_data()
 
 
 if __name__ == '__main__':

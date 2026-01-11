@@ -9,14 +9,14 @@ class Loader:
         for path in args:
             self.paths.append(path)
         self.download_paths = []
-        self.train_dir = r"C:\Users\Kalin\PycharmProjects\pythonTextClassifier\train"
+        self.train_dir = r"C:\Users\Kalin\PycharmProjects\pythonTextClassifier\dataset"
 
     def load_from_kaggle(self):
         for path in self.paths:
             self.download_paths.append(kagglehub.dataset_download(path))
         i = 1
         for dw_path in self.download_paths:
-            new_path = os.path.join(self.train_dir, f"train{i}")
+            new_path = os.path.join(self.train_dir, f"dataset{i}")
             # LLM
             shutil.copytree(dw_path, new_path, dirs_exist_ok=True)
             self.download_paths[i - 1] = new_path
