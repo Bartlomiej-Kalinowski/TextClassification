@@ -61,8 +61,6 @@ class ClassifierNB:
         if self.x_train is None:
             self.split()
 
-        # POPRAWKA KLUCZOWA: GaussianNB wymaga gęstej macierzy (toarray)
-        # MultinomialNB (dla spamu) akceptuje macierz rzadką (sparse)
         x_train_fit = self.x_train
         if self.classifier == 'GNB' and hasattr(x_train_fit, 'toarray'):
             x_train_fit = x_train_fit.toarray()
@@ -70,7 +68,6 @@ class ClassifierNB:
         self.gnb.fit(x_train_fit, self.y_train)
 
     def predict(self):
-        # POPRAWKA: Obsługa macierzy rzadkiej przy predykcji GNB
         x_test_pred = self.x_test
         if self.classifier == 'GNB' and hasattr(x_test_pred, 'toarray'):
             x_test_pred = x_test_pred.toarray()

@@ -6,8 +6,6 @@ from PyQt6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout,
                              QMessageBox, QHBoxLayout)
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QFont
-
-# Importy Twoich modułów lokalnych
 from dataLoader import Loader
 from eda import Eda
 from nb import ClassifierNB
