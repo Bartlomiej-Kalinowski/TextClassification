@@ -36,9 +36,7 @@ class EmbeddingPipeline:
         self.model.to(self.device)
 
     def vectorize(self):
-        print(1)
         embeddings = self.model.encode(self.docs, device=self.device)
-        print(2)
         return embeddings
 
 

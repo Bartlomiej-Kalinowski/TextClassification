@@ -1,6 +1,7 @@
 import kagglehub
 import os
 import shutil
+from pathlib import Path
 
 class Loader:
     def __init__(self, src = 'kaggle', *args):
@@ -9,7 +10,10 @@ class Loader:
         for path in args:
             self.paths.append(path)
         self.download_paths = []
-        self.train_dir = r"C:\Users\Kalin\PycharmProjects\pythonTextClassifier\dataset"
+        BASE_DIR = Path(__file__).resolve().parent
+
+        # Teraz budujesz ścieżkę do datasetu bez względu na to, gdzie jest projekt
+        self.train_dir = BASE_DIR / "dataset"
 
     def load_from_kaggle(self):
         for path in self.paths:
@@ -26,18 +30,8 @@ class Loader:
 
 
     def load(self):
-        if self.source.lower() == 'kaggle':
+        platform = self.source.lower()
+        if platform == 'kaggle':
             self.load_from_kaggle()
-
-
-def main():
-    ld = Loader(
-        'kaggle',
-        "ashfakyeafi/spam-email-classification", # dataset 1 - spam ham emails classification
-        "lakshmi25npathi/imdb-dataset-of-50k-movie-reviews",# dataset 2 - movie reviews sentiment classification
-        "aadyasingh55/fake-news-classification"# fake_news classification
-    )
-    ld.load()
-
-if __name__ == '__main__':
-    main()
+        else:
+            raise ValueError(f"Unsupported platform: {self.source}")

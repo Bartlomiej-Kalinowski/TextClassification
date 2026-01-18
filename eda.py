@@ -17,8 +17,8 @@ class Eda:
         duplicate_rows = self.dataset[self.dataset.duplicated()]
         print(self.dataset[self.dataset.duplicated()].head(5))
         print("number of duplicate rows: ", duplicate_rows.shape[0])
-        df = self.dataset.drop_duplicates()
-        df.count()
+        self.dataset = self.dataset.drop_duplicates()
+        self.dataset.count()
 
     def handle_null_data(self):
         print((self.dataset.isnull().sum()))

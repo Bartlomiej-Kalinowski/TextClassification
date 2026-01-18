@@ -1,5 +1,4 @@
 import numpy as np
-from pytest_mock import mocker
 from nb import ClassifierNB
 import pytest
 
